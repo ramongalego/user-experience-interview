@@ -1,0 +1,51 @@
+@import 'tailwindcss';
+
+/* Design tokens. Colour is only used for state: instrument state (waiting,
+   running, done, failed) and connection state. Finished work uses the softest
+   colours and open failures the strongest. */
+@theme {
+  --color-ground: oklch(0.982 0.004 240);
+  --color-surface: oklch(1 0 0);
+  --color-line: oklch(0.905 0.008 240);
+  --color-ink: oklch(0.24 0.025 250);
+  --color-ink-soft: oklch(0.46 0.02 250);
+
+  --color-waiting: oklch(0.9 0.008 250);
+  --color-running: oklch(0.58 0.13 240);
+  --color-running-soft: oklch(0.88 0.05 240);
+  --color-done: oklch(0.52 0.1 165);
+  --color-done-soft: oklch(0.91 0.045 165);
+  --color-failed: oklch(0.53 0.19 27);
+  --color-failed-soft: oklch(0.965 0.022 27);
+  /* Secondary text on a failed-soft background. Tinted red rather than grey
+     so it stays readable. */
+  --color-failed-ink: oklch(0.38 0.09 27);
+  --color-stale: oklch(0.5 0.11 70);
+  --color-stale-soft: oklch(0.965 0.04 85);
+}
+
+@layer base {
+  html {
+    background: var(--color-ground);
+    color: var(--color-ink);
+  }
+
+  h1,
+  h2 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-running-soft);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-running);
+    outline-offset: 2px;
+  }
+}
